@@ -225,9 +225,11 @@ class GA4
         }
 
         try {
-            $payload = ['type' => 'mrkdwn', 'text' => json_encode($requestData)];
+            $payload = [
+                'content' => json_encode($requestData)
+            ];
 
-            Http::post('https://hooks.slack.com/services/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', $payload)->throw();
+            Http::post('https://discord.com/api/webhooks/1296512344993693780/5md_05Ch-l1wxV87a0sIGjzVRfseqblsItJRE8Hzmayu4Fr6MTdHRcOdRe_NMOyK_TX6', $payload)->throw();
         } catch (\Exception $e) {
             report($e);
         }
